@@ -1,9 +1,8 @@
-package com.cursomicro.primermicro.controllers;
+package com.cursomicro.primermicro.controller;
 
 import com.cursomicro.primermicro.dto.SaludoRequestDTO;
 import com.cursomicro.primermicro.dto.SaludoResponseDTO;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +19,10 @@ public class SaludoController {
     }
 
     @PostMapping(value = "/saludoPost", consumes = "application/json", produces = "application/json")
-    public String saludarConNombre(@RequestBody SaludoRequestDTO request) {
+    public SaludoResponseDTO saludarConNombre(@RequestBody SaludoRequestDTO request) {
         log.info("Lanzando servicio Post - Saludo con el nombre : " + request.getName() );
         SaludoResponseDTO response = new SaludoResponseDTO();
         response.setSaludo("Hola " + request.getName() + " desde Spring Boot!");
-        return response.getSaludo();
+        return response;
     }
 }
